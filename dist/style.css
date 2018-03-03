@@ -6,6 +6,11 @@
     font-family: 'Roboto', sans-serif;
 }
 
+body .container *.create-hotspot {
+    background: #A4BCEA!important;
+    border: 1px solid red!important;
+}
+
 ul, li {
     list-style: none;
 }
@@ -58,6 +63,7 @@ ul, li {
 }
 
 .btn {
+    outline: 0;
     color: #fff;
     border: none;
     font-size: 20px;
@@ -75,6 +81,7 @@ ul, li {
 }
 
 .btn:hover {
+    outline: 0;
     opacity: .6;
 }
 
