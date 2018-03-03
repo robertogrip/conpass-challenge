@@ -28,10 +28,14 @@ const Navbar = () => {
     );
 };
 
+const createHotsopt = () => {
+    window.alert("teste");
+}
+
 const Hotspots = () => {
     return (
         <section className="container hotspot">
-            <button className="btn btn-hotspot">
+            <button className="btn btn-hotspot" onClick={createHotsopt}>
                 Create Hotspot
             </button>
             <ListHotspots />

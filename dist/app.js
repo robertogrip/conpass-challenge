@@ -75,13 +75,17 @@ var Navbar = function Navbar() {
     );
 };
 
+var createHotsopt = function createHotsopt() {
+    window.alert("teste");
+};
+
 var Hotspots = function Hotspots() {
     return _react2.default.createElement(
         'section',
         { className: 'container hotspot' },
         _react2.default.createElement(
             'button',
-            { className: 'btn btn-hotspot' },
+            { className: 'btn btn-hotspot', onClick: createHotsopt },
             'Create Hotspot'
         ),
         _react2.default.createElement(ListHotspots, null)
