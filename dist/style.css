@@ -3,6 +3,7 @@
     padding: 0;
     text-decoration: none;
     box-sizing: border-box;
+    border: 1px solid transparent;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -85,9 +86,10 @@ ul, li {
     opacity: .6;
 }
 
-.btn.btn-hotspot {
+.btn.btn-hotspot, .btn.btn-hotspot.create-hotspot {
     margin: 45px 0;
-    background-color: #00C2CA;
+    border: none!important;
+    background-color: #00C2CA!important;
 }
 
 .hotspot-list {
@@ -127,4 +129,17 @@ ul, li {
     color: #5D73E5;
     font-size: 15px;
     text-decoration: underline;
+}
+
+.user-hotspot {
+    width: 40px;
+    height: 40px;
+    background: red;
+    position: absolute;
+    border-radius: 50%;
+    -webkit-transform: translate(-50%, -50%);
+       -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+         -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
 }

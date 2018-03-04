@@ -43,7 +43,7 @@ gulp.task('bundle', ['compile'], function() {
 });
 
 gulp.task('compile', function() {
-    gulp.src('src/app.jsx')
+    gulp.src('src/*')
         .pipe(babel({
             presets: ['es2015', 'react']
         }))
