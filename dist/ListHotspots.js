@@ -24,22 +24,16 @@ var ListHotspots = function (_Component) {
     function ListHotspots(props) {
         _classCallCheck(this, ListHotspots);
 
-        var _this = _possibleConstructorReturn(this, (ListHotspots.__proto__ || Object.getPrototypeOf(ListHotspots)).call(this, props));
-
-        _this.state = {
-            hotspots: props.hotspots
-        };
-        return _this;
+        return _possibleConstructorReturn(this, (ListHotspots.__proto__ || Object.getPrototypeOf(ListHotspots)).call(this, props));
     }
 
     _createClass(ListHotspots, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            console.log(this.state);
-        }
-    }, {
         key: 'componentDidUpdate',
         value: function componentDidUpdate() {
+            document.querySelectorAll('.user-hotspot').forEach(function (item) {
+                item.remove();
+            });
+
             this.props.hotspots.forEach(function (item, index) {
                 var elHotspot = document.createElement('div');
                 elHotspot.className = 'user-hotspot';
@@ -51,10 +45,12 @@ var ListHotspots = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var hotspotItems = this.state.hotspots.map(function (item, index) {
+            var _this2 = this;
+
+            var hotspotItems = this.props.hotspots.map(function (item, index) {
                 return _react2.default.createElement(
                     'li',
-                    { className: 'App-todo-list', key: index },
+                    { className: 'App-todo-list', key: index, 'data-id': index },
                     _react2.default.createElement(
                         'p',
                         null,
@@ -62,7 +58,7 @@ var ListHotspots = function (_Component) {
                     ),
                     _react2.default.createElement(
                         'a',
-                        { href: '#' },
+                        { onClick: _this2.props.deleteHotspot },
                         'Delete'
                     )
                 );

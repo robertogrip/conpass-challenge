@@ -3,16 +3,13 @@ import React, { Component } from 'react';
 class ListHotspots extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            hotspots: props.hotspots
-        };
-    }
-
-    componentDidMount() {
-        console.log(this.state);
     }
 
     componentDidUpdate() {
+        document.querySelectorAll('.user-hotspot').forEach((item) => {
+            item.remove();
+        });
+        
         this.props.hotspots.forEach((item, index) => {
             let elHotspot = document.createElement('div');
             elHotspot.className = 'user-hotspot';
@@ -23,11 +20,11 @@ class ListHotspots extends Component {
     }
 
     render() {
-        const hotspotItems = this.state.hotspots.map((item, index) => {
+        const hotspotItems = this.props.hotspots.map((item, index) => {
             return (
-                <li className="App-todo-list" key={index}>
+                <li className="App-todo-list" key={index} data-id={index}>
                     <p>{item.name}</p>
-                    <a href="#">Delete</a>
+                    <a onClick={this.props.deleteHotspot}>Delete</a>
                 </li>
             )
         });

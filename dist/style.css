@@ -16,6 +16,10 @@ ul, li {
     list-style: none;
 }
 
+a, button, input[type=submit], input[type=radio], input[type=checkbox] {
+    cursor: pointer;
+}
+
 .container {
     width: 860px;
     margin: 0 auto;
@@ -132,14 +136,28 @@ ul, li {
 }
 
 .user-hotspot {
-    width: 40px;
-    height: 40px;
-    background: red;
+    width: 30px;
+    height: 30px;
     position: absolute;
     border-radius: 50%;
+    background: #e85353;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
     -webkit-transform: translate(-50%, -50%);
        -moz-transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
          -o-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
+    -webkit-transition: all .25s ease-in-out;
+       -moz-transition: all .25s ease-in-out;
+        -ms-transition: all .25s ease-in-out;
+         -o-transition: all .25s ease-in-out;
+            transition: all .25s ease-in-out;
+}
+
+.user-hotspot:hover {
+    box-shadow: 3px 3px 2px rgba(0,0,0,0.3);
+}
+
+body.create-mode .App-todo-list a {
+    pointer-events: none;
 }

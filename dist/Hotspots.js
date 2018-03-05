@@ -77,6 +77,7 @@ var Hotspots = function (_Component) {
 					positionY: event.y
 				});
 				_this.setState({ hotspots: hotspots });
+				_this.setHotspotsLocal(hotspots);
 				_this.createModeHotspot(event);
 			}
 		};
@@ -85,10 +86,35 @@ var Hotspots = function (_Component) {
 			removeHoverElements();
 			event.target.className += ' create-hotspot';
 		};
+
+		_this.getHotspotsLocal = function () {
+			return window.localStorage.getItem('hotspots') && JSON.parse(window.localStorage.getItem('hotspots'));
+		};
+
+		_this.setHotspotsLocal = function (hotspots) {
+			if (hotspots.length > 0) {
+				window.localStorage.setItem('hotspots', JSON.stringify(hotspots));
+			}
+		};
+
+		_this.deleteHotspot = function (event) {
+			var hotspotIndex = event.target.parentNode.getAttribute('data-id') || 0;
+			var hotspots = _this.state.hotspots;
+			hotspots.splice(hotspotIndex, 1);
+			_this.setState({ hotspots: hotspots });
+			_this.setHotspotsLocal(hotspots);
+		};
 		return _this;
 	}
 
 	_createClass(Hotspots, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			if (this.getHotspotsLocal()) {
+				this.setState({ hotspots: this.getHotspotsLocal() });
+			}
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
@@ -99,7 +125,7 @@ var Hotspots = function (_Component) {
 					{ className: 'btn btn-hotspot', onClick: this.createModeHotspot },
 					'Create Hotspot'
 				),
-				_react2.default.createElement(_ListHotspots2.default, { hotspots: this.state.hotspots })
+				_react2.default.createElement(_ListHotspots2.default, { hotspots: this.state.hotspots, deleteHotspot: this.deleteHotspot })
 			);
 		}
 	}]);

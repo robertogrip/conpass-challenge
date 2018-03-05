@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import ListHotspots from './ListHotspots';
 
 class Hotspots extends Component {
-    constructor(props) {
-    	super(props);
+    constructor( props ) {
+    	super( props );
         this.state = {
             hotspots: []
         };
 
 	    this.createModeHotspot = ( event ) => {
-	        const changeBtn = (cancel) => {
+	        const changeBtn = ( cancel ) => {
 		        if( cancel ) {
 		            document.querySelector('.btn.btn-hotspot').textContent = "Create Hotspot";
 		        	document.body.className = document.body.className.replace(' create-mode', '');
@@ -30,18 +30,18 @@ class Hotspots extends Component {
 		    } else {
 		        document.body.onclick = null;
 		        document.body.onmousemove = null;
-		        changeBtn(true);
+		        changeBtn( true );
 		    }
 	    };
 
 		const removeHoverElements = () => {
 			const activeElements = document.querySelectorAll('.create-hotspot');
-		    activeElements.forEach((element) => {
+		    activeElements.forEach(( element ) => {
 		        element.className = element.className.replace(' create-hotspot', '');
 		    });
 		}
 
-	    this.addHotspotList = (event) => {
+	    this.addHotspotList = ( event ) => {
 	    	if( event.target !== document.querySelector('.btn.btn-hotspot') ){
 	    		removeHoverElements();
 			    let hotspots = this.state.hotspots;
@@ -51,16 +51,40 @@ class Hotspots extends Component {
 			    	positionY: event.y
 			    });
 			    this.setState({ hotspots: hotspots });
-		    	this.createModeHotspot(event);
+			    this.setHotspotsLocal( hotspots );
+		    	this.createModeHotspot( event );
 			}
 		};
 
-		this.hoverElements = (event) => {
+		this.hoverElements = ( event ) => {
 		    removeHoverElements();
 		    event.target.className += ' create-hotspot';
 		};
+
+		this.getHotspotsLocal = () => {
+    		return window.localStorage.getItem( 'hotspots' ) && JSON.parse( window.localStorage.getItem( 'hotspots' ) );
+    	}
+
+		this.setHotspotsLocal = ( hotspots )=> {
+			if( hotspots.length > 0 ) {
+				window.localStorage.setItem( 'hotspots', JSON.stringify( hotspots ) );
+			}
+		}
+
+		this.deleteHotspot = ( event ) => {
+			const hotspotIndex = event.target.parentNode.getAttribute('data-id') || 0;
+			let hotspots = this.state.hotspots;
+			hotspots.splice( hotspotIndex, 1 );
+			this.setState({ hotspots: hotspots });
+			this.setHotspotsLocal( hotspots );
+		}
     }
 
+    componentDidMount() {
+    	if( this.getHotspotsLocal() ) {
+    		this.setState({ hotspots: this.getHotspotsLocal() });
+    	}
+    }
 
     render() {
 	    return (
@@ -68,7 +92,7 @@ class Hotspots extends Component {
 	            <button className="btn btn-hotspot" onClick={this.createModeHotspot}>
 	                Create Hotspot
 	            </button>
-	            <ListHotspots hotspots={this.state.hotspots} />
+	            <ListHotspots hotspots={this.state.hotspots} deleteHotspot={this.deleteHotspot} />
 	        </section>
 	    )
 	}
