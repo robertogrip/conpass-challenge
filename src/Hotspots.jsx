@@ -47,8 +47,8 @@ class Hotspots extends Component {
 			    let hotspots = this.state.hotspots;
 			    hotspots.push({
 			    	name: 'Hotspot List #' + ( hotspots.length + 1 ),
-			    	positionX: event.x,
-			    	positionY: event.y
+			    	positionX: ( event.x - 15 ),
+			    	positionY: ( event.y - 15 )
 			    });
 			    this.setState({ hotspots: hotspots });
 			    this.setHotspotsLocal( hotspots );
@@ -66,9 +66,7 @@ class Hotspots extends Component {
     	}
 
 		this.setHotspotsLocal = ( hotspots )=> {
-			if( hotspots.length > 0 ) {
-				window.localStorage.setItem( 'hotspots', JSON.stringify( hotspots ) );
-			}
+			window.localStorage.setItem( 'hotspots', JSON.stringify( hotspots ) );
 		}
 
 		this.deleteHotspot = ( event ) => {

@@ -9,12 +9,18 @@ class ListHotspots extends Component {
         document.querySelectorAll('.user-hotspot').forEach((item) => {
             item.remove();
         });
-        
+
         this.props.hotspots.forEach((item, index) => {
             let elHotspot = document.createElement('div');
             elHotspot.className = 'user-hotspot';
             elHotspot.style.top = `${item.positionY}px`;
             elHotspot.style.left = `${item.positionX}px`;
+
+            let elTooltip = document.createElement('div');
+            elTooltip.className = 'tooltip';
+            elTooltip.textContent = item.name;
+            elHotspot.appendChild(elTooltip);
+
             document.body.appendChild(elHotspot);
         });
     }

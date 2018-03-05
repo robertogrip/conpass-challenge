@@ -73,8 +73,8 @@ var Hotspots = function (_Component) {
 				var hotspots = _this.state.hotspots;
 				hotspots.push({
 					name: 'Hotspot List #' + (hotspots.length + 1),
-					positionX: event.x,
-					positionY: event.y
+					positionX: event.x - 15,
+					positionY: event.y - 15
 				});
 				_this.setState({ hotspots: hotspots });
 				_this.setHotspotsLocal(hotspots);
@@ -92,9 +92,7 @@ var Hotspots = function (_Component) {
 		};
 
 		_this.setHotspotsLocal = function (hotspots) {
-			if (hotspots.length > 0) {
-				window.localStorage.setItem('hotspots', JSON.stringify(hotspots));
-			}
+			window.localStorage.setItem('hotspots', JSON.stringify(hotspots));
 		};
 
 		_this.deleteHotspot = function (event) {

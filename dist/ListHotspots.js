@@ -39,6 +39,12 @@ var ListHotspots = function (_Component) {
                 elHotspot.className = 'user-hotspot';
                 elHotspot.style.top = item.positionY + 'px';
                 elHotspot.style.left = item.positionX + 'px';
+
+                var elTooltip = document.createElement('div');
+                elTooltip.className = 'tooltip';
+                elTooltip.textContent = item.name;
+                elHotspot.appendChild(elTooltip);
+
                 document.body.appendChild(elHotspot);
             });
         }

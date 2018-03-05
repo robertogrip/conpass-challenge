@@ -7,7 +7,7 @@
     font-family: 'Roboto', sans-serif;
 }
 
-body .container *.create-hotspot {
+body #content > div *.create-hotspot {
     background: #A4BCEA!important;
     border: 1px solid red!important;
 }
@@ -63,10 +63,6 @@ a, button, input[type=submit], input[type=radio], input[type=checkbox] {
     color: #666666;
 }
 
-.hotspot {
-    text-align: center;
-}
-
 .btn {
     outline: 0;
     color: #fff;
@@ -90,10 +86,15 @@ a, button, input[type=submit], input[type=radio], input[type=checkbox] {
     opacity: .6;
 }
 
-.btn.btn-hotspot, .btn.btn-hotspot.create-hotspot {
+.btn.btn-hotspot, body #content .btn.btn-hotspot.create-hotspot {
     margin: 45px 0;
     border: none!important;
     background-color: #00C2CA!important;
+}
+
+.hotspot {
+    text-align: center;
+    padding-bottom: 45px;
 }
 
 .hotspot-list {
@@ -142,20 +143,89 @@ a, button, input[type=submit], input[type=radio], input[type=checkbox] {
     border-radius: 50%;
     background: #e85353;
     box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    -webkit-transform: translate(-50%, -50%);
-       -moz-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-         -o-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
     -webkit-transition: all .25s ease-in-out;
        -moz-transition: all .25s ease-in-out;
         -ms-transition: all .25s ease-in-out;
          -o-transition: all .25s ease-in-out;
             transition: all .25s ease-in-out;
+    -webkit-animation: zoom-in-out .8s linear 0s infinite normal ;
+    animation: zoom-in-out .8s linear 0s infinite normal ;
+}
+
+@-webkit-keyframes zoom-in-out {
+    0%{
+        -ms-transform: scale(.8);
+        transform: scale(.8);
+    }
+    50%{
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+    100%{
+        -ms-transform: scale(.8);
+        transform: scale(.8);
+    }
+}
+
+@keyframes zoom-in-out {
+    0%{
+        -ms-transform: scale(.8);
+        transform: scale(.8);
+    }
+    50%{
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+    100%{
+        -ms-transform: scale(.8);
+        transform: scale(.8);
+    }
 }
 
 .user-hotspot:hover {
+    cursor: pointer;
+    -webkit-animation: none;
+    animation: none;
     box-shadow: 3px 3px 2px rgba(0,0,0,0.3);
+}
+
+.user-hotspot .tooltip {
+    left: 50%;
+    top: 150%;
+    width: 130px;
+    display: none;
+    font-size: 12px;
+    padding: 5px 15px;
+    position: absolute;
+    border-radius: 5px;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    -webkit-transform: translateX(-50%);
+       -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+         -o-transform: translateX(-50%);
+            transform: translateX(-50%);
+}
+
+.user-hotspot:hover .tooltip {
+    display: block;   
+}
+
+.user-hotspot .tooltip:before {
+    width: 0; 
+    height: 0; 
+    left: 50%;
+    content: "";
+    bottom: 100%;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ccc;
+    -webkit-transform: translateX(-50%);
+       -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+         -o-transform: translateX(-50%);
+            transform: translateX(-50%);
 }
 
 body.create-mode .App-todo-list a {
