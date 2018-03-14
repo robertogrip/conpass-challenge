@@ -1,4 +1,4 @@
-var gulp = require('gulp');
+    var gulp = require('gulp');
 var babel = require('gulp-babel');
 var webserver = require('gulp-webserver');
 
@@ -42,12 +42,17 @@ gulp.task('bundle', ['compile'], function() {
         .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('compile', function() {
-    gulp.src('src/*')
+gulp.task('compile', ['style'], function() {
+    gulp.src('src/*.jsx')
         .pipe(babel({
             presets: ['es2015', 'react']
         }))
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('style', function() {
+    gulp.src('src/*.css')
+        .pipe(gulp.dest('dist'));
 });
 
 
