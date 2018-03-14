@@ -32,6 +32,6 @@ const Navbar = () => {
 };
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('content')
+    <App />,
+    document.getElementById('content')
 );
