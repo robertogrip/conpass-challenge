@@ -2,6 +2,12 @@
 
 After you make the repository clone, you can run:
 
+To install the dependencies:
+
+### `npm install`
+
+To run the project in the browser
+
 ### `gulp`
 
 Runs the app in the development mode.<br>
